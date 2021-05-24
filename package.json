@@ -4,9 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.js -L",
     "start:prod": "SET NODE_ENV=production&&nodemon server.js",
-    "debug": "ndb server.js"
+    "debug": "ndb server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --public-url /js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "Shobhit Sahoo",
   "license": "ISC",
@@ -27,6 +29,7 @@
     "morgan": "^1.10.0",
     "ndb": "^1.1.5",
     "nodemailer": "^4.7.0",
+    "parcel-bundler": "^1.12.5",
     "pug": "^3.0.2",
     "slugify": "^1.5.0",
     "validator": "^13.5.2",

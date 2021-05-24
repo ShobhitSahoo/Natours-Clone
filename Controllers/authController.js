@@ -84,12 +84,13 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
-    
     // 1) Getting the token and check if it exists
     const auth = req.headers.authorization;
     let token;
     if(auth && auth.startsWith('Bearer')) {
         token = auth.split(' ')[1];
+    } else if (req.cookies.jwt) {
+        token = req.cookies.jwt;
     }
 
     if(!token) {
