@@ -241,7 +241,7 @@ app.use(mongoSanitize());
 
 // Data Sanitization against XSS
 app.use(xss());
-
+//Checking git
 // Prevent parameter pollution
 app.use(hpp({
   whitelist: ['duration', 'ratingsAverage', 'ratingsQuantity', 'maxGroupSize', 'difficulty', 'price']
