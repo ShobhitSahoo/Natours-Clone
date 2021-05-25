@@ -126,7 +126,7 @@ body {
 .heading-secondary--error {
   background-image: -webkit-gradient( linear, left top, right top, from(#ff7730), to(#eb4d4b));
   background-image: linear-gradient(to right, #ff7730, #eb4d4b);
-  font-size: 3.5rem;
+  font-size: 3.2rem;
 }
 
 .heading-primary, .heading-tertirary {

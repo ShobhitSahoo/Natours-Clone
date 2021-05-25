@@ -21,19 +21,6 @@ mongoose.connect(DB, {
     useUnifiedTopology: true        // Added due a warning in terminal
 }).then(() => console.log('DB connection successful!'));
 
-
-
-// const testTour = new Tour({
-//     name: 'The Camp Parker',
-//     price: 997
-// });
-
-// testTour.save().then(doc => {
-//     console.log(doc);
-// }).catch(err => {
-//     console.log('ERROR: ' + err);
-// })
-
 const port = 3000;
 const server = app.listen(port, () => console.log(`App listening on port ${port}!`));
 
