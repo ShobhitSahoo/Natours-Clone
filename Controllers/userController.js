@@ -3,7 +3,32 @@ const APIFeatures = require('./../Utils/apiFeatures');
 const catchAsync = require('./../Utils/catchAsync');
 const AppError = require('./../Utils/appError');
 const factory = require('./handlerFactory');
+const multer = require('multer');
 
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/img/users');
+    },
+    filename: (req, file, cb) => {
+        const ext = file.mimetype.split('/')[1];
+        cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
+    }
+});
+
+const multerFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith('image')) {
+        cb(null, true);
+    } else {
+        cb(new AppError('Not an image please upload only image.', 400), false);
+    }
+}
+
+const upload = multer({
+    storage: multerStorage,
+    fileFilter: multerFilter
+});
+
+exports.uploadUserPhoto = upload.single('photo')
 
 const filterObj = (obj, ...allowedFields) => {
     const newObj = {};
@@ -20,6 +45,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     }
     // 2) Update user document
     const filteredBody = filterObj(req.body, 'name', 'email');
+    if(req.file) filteredBody.photo = req.file.filename;
     const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {new: true, runValidators: true});
     
     res.status(200).json({
