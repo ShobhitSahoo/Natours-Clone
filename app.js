@@ -15,6 +15,7 @@ const globalErrorHandler = require('./Controllers/errorController');
 const userRouter = require('./Routes/userRoutes');
 const tourRouter = require('./Routes/tourRoutes');
 const reviewRouter = require('./Routes/reviewRoutes');
+const bookingRouter = require('./Routes/bookingRoutes');
 const viewRouter = require('./Routes/viewRoutes');
 
 const app = express()
@@ -33,59 +34,6 @@ app.use(
 // Serving static files
 // app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Http headers 
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         defaultSrc: ["'self'", 'data:', 'blob:', 'https:', 'ws:'],
-//         baseUri: ["'self'"],
-//         fontSrc: ["'self'", 'https:', 'data:'],
-//         scriptSrc: [
-//           "'self'",
-//           'https:',
-//           'http:',
-//           'blob:',
-//           'https://*.mapbox.com',
-//           'https://js.stripe.com',
-//           'https://m.stripe.network',
-//           'https://*.cloudflare.com',
-//         ],
-//         frameSrc: ["'self'", 'https://js.stripe.com'],
-//         objectSrc: ["'none'"],
-//         styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
-//         workerSrc: [
-//           "'self'",
-//           'data:',
-//           'blob:',
-//           'https://*.tiles.mapbox.com',
-//           'https://api.mapbox.com',
-//           'https://events.mapbox.com',
-//           'https://m.stripe.network',
-//         ],
-//         childSrc: ["'self'", 'blob:'],
-//         imgSrc: ["'self'", 'data:', 'blob:'],
-//         formAction: ["'self'"],
-//         connectSrc: [
-//           "'self'",
-//           "'unsafe-inline'",
-//           'data:',
-//           'blob:',
-//           'https://*.stripe.com',
-//           'https://*.mapbox.com',
-//           'https://*.cloudflare.com/',
-//           'https://bundle.js:*',
-//           'ws://127.0.0.1:*/',
-//           'http://127.0.0.1:*/'
-
-//         ],
-//         upgradeInsecureRequests: [],
-//       },
-//     },
-//   })
-// );
-
 
 app.use(helmet());
 csp.extend(app, {
@@ -195,6 +143,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
