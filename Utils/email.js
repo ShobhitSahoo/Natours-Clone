@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 const htmlToText = require('html-to-text');
+const nodemailerSendgrid = require('nodemailer-sendgrid');
 
 module.exports = class Email {
     constructor(user, url) {
@@ -13,7 +14,19 @@ module.exports = class Email {
     newTransport() {
         if(process.env.NODE_ENV === 'production') {
             // Sendgrid;
-            return 1;
+
+            // return nodemailer.createTransport({
+            //     service: 'SendGrid',
+            //     auth: {
+            //         user: process.env.SENDGRID_USERNAME,
+            //         user: process.env.SENDGRID_PASSWORD,
+            //     }
+            // });
+
+            return nodemailer.createTransport(
+                nodemailerSendgrid({
+                  apiKey: process.env.SENDGRID_PASSWORD
+                }))
         }
 
         return nodemailer.createTransport({
