@@ -5,10 +5,6 @@ export const displayMap = (locations) => {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/shobhit24/ckopb9huq8vwt18qvw4gxh271',
-        // center: [-118.113491, 34.111745],
-        // zoom: 5,
-        // interactive: false
-        // scrollZoom: false
     });
 
     const bounds = new mapboxgl.LngLatBounds();

@@ -6,7 +6,6 @@ const factory = require('./handlerFactory');
 const AppError = require('./../Utils/appError');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-
     // 1) Get the currently booked tour
     const tour = await Tour.findById(req.params.tourId);
 
@@ -23,7 +22,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
                 description: tour.summary,
                 images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
                 amount: tour.price * 100,
-                currency: 'inr',
+                currency: 'usd',
                 quantity: 1
             }
         ]

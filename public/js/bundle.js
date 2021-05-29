@@ -6663,11 +6663,7 @@ var displayMap = function displayMap(locations) {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic2hvYmhpdDI0IiwiYSI6ImNrb3A4c2E5bjAyY2sycHBkdDQ4ODhyMHkifQ.tH5gqW2eDw4fN0KjJMkhuQ';
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/shobhit24/ckopb9huq8vwt18qvw4gxh271' // center: [-118.113491, 34.111745],
-    // zoom: 5,
-    // interactive: false
-    // scrollZoom: false
-
+    style: 'mapbox://styles/shobhit24/ckopb9huq8vwt18qvw4gxh271'
   });
   var bounds = new mapboxgl.LngLatBounds();
   locations.forEach(function (loc) {
@@ -8714,43 +8710,49 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// const stripe = Stripe(`${process.env.STRIPE_PUB_KEY}`);
+var stripe = Stripe("pk_test_51Iw5dWSElk0DPMVIVcnCFoTwpZqe72Mk9SLRopp7GAGtH7LYRza2diVAen5we8i4PRE45mx99Y2GkcmLgcDfGbTZ00Pq81ITjp");
+
 var bookTour = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(tourId) {
-    var stripe, session;
+    var session, sId;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            stripe = Stripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
-            _context.prev = 1;
-            _context.next = 4;
+            _context.prev = 0;
+            _context.next = 3;
             return (0, _axios.default)("http://localhost:3000/api/v1/bookings/checkout-session/".concat(tourId));
 
-          case 4:
+          case 3:
             session = _context.sent;
-            console.log(session); // 2) Create checkout form + charge credit card
+            console.log(session);
+            sId = session.data.session.id;
+            console.log(sId); //cs_test_a12JuTqvnBsj88l2tvFZf4xZeCL9NjNdKYPVX3gmahIjucB9PeCg6xnxtP
+            // return stripe.redirectToCheckout({ sessionId: sId });
+            // 2) Create checkout form + charge credit card
 
-            _context.next = 8;
+            _context.next = 9;
             return stripe.redirectToCheckout({
-              sessionId: session.data.session.id
+              sessionId: sId
             });
 
-          case 8:
-            _context.next = 14;
+          case 9:
+            _context.next = 15;
             break;
 
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](1);
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](0);
             console.log(_context.t0);
             (0, _alerts.showAlert)('error', _context.t0);
 
-          case 14:
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[0, 11]]);
   }));
 
   return function bookTour(_x) {
@@ -9147,7 +9149,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44927" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45411" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
