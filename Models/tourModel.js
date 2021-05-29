@@ -138,15 +138,6 @@ tourSchema.pre('save', function(next) {
     next();
 });
 
-// Embedding datasets
-// tourSchema.pre('save', async function(next) {
-//     const guidesPromises = this.guides.map( async id => await User.findById(id));
-//     this.guides = await Promise.all(guidesPromises);
-//     next();
-// });
-
-// tourSchema.post('save', function(doc, next) {});
-// Query middleware
 tourSchema.pre('/^find/', function(next) {
     this.find({secretTour: {$ne: true}});
     this.start = Date.now();
@@ -164,13 +155,6 @@ tourSchema.post('/^find/', function(docs, next) {
     console.log(`Query took ${Date.now()} - this.start milliseconds`);
     next();
 });
-
-
-// Aggregate middleware
-// tourSchema.pre('aggregate', function(next) {
-//     this.pipeline().unshift({$match: { secretTour: {$ne: true}}});
-//     next();
-// });
 
 const Tour = mongoose.model('Tour', tourSchema);
 
