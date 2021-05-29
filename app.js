@@ -9,6 +9,7 @@ const hpp = require('hpp');
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const csp = require('express-csp');
+const compression = require('compression');
 
 const AppError = require('./Utils/appError');
 const globalErrorHandler = require('./Controllers/errorController');
@@ -130,6 +131,8 @@ app.use(hpp({
   whitelist: ['duration', 'ratingsAverage', 'ratingsQuantity', 'maxGroupSize', 'difficulty', 'price']
 }));
 
+app.use(compression());
+
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
@@ -154,5 +157,3 @@ app.use(globalErrorHandler);
 module.exports = app;
 
 // express().listen(3000, () => console.log("Listening on port 3000"));
-
-// "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --public-url /js --out-file bundle.js"
