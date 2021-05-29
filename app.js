@@ -33,6 +33,8 @@ app.use(
   })
 )
 
+app.options('*', cors());
+
 // Global Middlewares
 // Serving static files
 // app.use(express.static(`${__dirname}/public`));
