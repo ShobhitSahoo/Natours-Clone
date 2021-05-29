@@ -2,8 +2,7 @@
 
 Live Website: https://natours-clone.herokuapp.com
 
-You can read the API documentation at
-API published at: https://documenter.getpostman.com/view/11750601/TzRVf6M5
+You can read the API documentation at [published API](https://documenter.getpostman.com/view/11750601/TzRVf6M5)
 
 Example Email: leo@example.com, sophie@example.com
 Password: test1234
