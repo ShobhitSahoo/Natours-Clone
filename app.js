@@ -19,9 +19,7 @@ const reviewRouter = require('./Routes/reviewRoutes');
 const bookingRouter = require('./Routes/bookingRoutes');
 const viewRouter = require('./Routes/viewRoutes');
 
-const app = express();
-
-app.enable('trust proxy');
+const app = express()
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -32,8 +30,6 @@ app.use(
     origin: "*"
   })
 )
-
-app.options('*', cors());
 
 // Global Middlewares
 // Serving static files
