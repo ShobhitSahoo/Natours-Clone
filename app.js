@@ -17,9 +17,12 @@ const userRouter = require('./Routes/userRoutes');
 const tourRouter = require('./Routes/tourRoutes');
 const reviewRouter = require('./Routes/reviewRoutes');
 const bookingRouter = require('./Routes/bookingRoutes');
+const bookingController = require('./Controllers/bookingController');
 const viewRouter = require('./Routes/viewRoutes');
 
-const app = express()
+const app = express();
+
+app.enable('trust proxy');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +33,8 @@ app.use(
     origin: "*"
   })
 )
+
+app.options('*', cors());
 
 // Global Middlewares
 // Serving static files
@@ -114,6 +119,8 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour.'
 });
 app.use('/api', limiter);
+
+app.post('/webhook-checkout', express.raw({ type: '*/*' }), bookingController.webhookCheckout);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
