@@ -1333,3 +1333,13 @@ body {
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
 }
+
+.btns__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading-fourth {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,16 @@
+extends base
+
+//- block append head
+//-     script(defer src='/js/login.js')
+
+block content
+    main.main
+        .login-form
+            h2.heading-secondary.ma-bt-lg Forgot Your Password?
+            h3.heading-fourth Drop your email below, we will send you a link to reset your password.
+            form.form.form--forgot
+                .form__group
+                    label.form__label(for='email') Your Email
+                    input#email.form__input(type='email', placeholder='Email', required)
+                .form__group
+                    button.btn.btn--green Send Mail
