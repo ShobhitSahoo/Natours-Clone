@@ -20,7 +20,7 @@ mongoose.connect(DB, {
     useUnifiedTopology: true        // Added due a warning in terminal
 }).then(() => console.log('DB connection successful!'));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 const server = app.listen(port, () => console.log(`App listening on port ${port}!`));
 
 process.on('unhandledRejection', err => {
