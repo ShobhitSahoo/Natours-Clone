@@ -4,8 +4,8 @@ Live Website: https://natours-clone.herokuapp.com
 
 You can read the API documentation at [published API](https://documenter.getpostman.com/view/11750601/TzRVf6M5)
 
-Example Email: leo@example.com, sophie@example.com
-Password: test1234
+Now you can create your own account and log into your account.
+Forget password implmented as well.
 
 You can update password and profile photo after logging in.
 
